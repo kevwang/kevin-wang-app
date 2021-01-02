@@ -4,8 +4,10 @@ import { Helmet } from 'react-helmet'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
+import Root from '../components/root'
 
 import heroStyles from '../components/hero.module.css'
+import Sidebar from '../components/sidebar'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -13,33 +15,33 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     return (
-      <Layout location={this.props.location}>
+      <Root>
         <div style={{ background: '#fff' }}>
-          <Helmet title={`${post.title} | ${siteTitle}`} />
-          <div className={heroStyles.hero}>
-            <Img
-              className={heroStyles.heroImage}
-              alt={post.title}
-              fluid={post.heroImage.fluid}
-            />
-          </div>
-          <div className="wrapper">
-            <h1 className="section-headline">{post.title}</h1>
-            <p
-              style={{
-                display: 'block',
-              }}
-            >
-              {post.publishDate}
-            </p>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: post.body.childMarkdownRemark.html,
-              }}
-            />
-          </div>
-        </div>
-      </Layout>
+           <Helmet title={`${post.title} | ${siteTitle}`} />
+           <div className={heroStyles.hero}>
+             <Img
+               className={heroStyles.heroImage}
+               alt={post.title}
+               fluid={post.heroImage.fluid}
+             />
+           </div>
+           <div className="wrapper">
+             <h1 className="section-headline">{post.title}</h1>
+             <p
+               style={{
+                 display: 'block',
+               }}
+             >
+               {post.publishDate}
+             </p>
+             <div
+               dangerouslySetInnerHTML={{
+                 __html: post.body.childMarkdownRemark.html,
+               }}
+             />
+           </div>
+         </div>
+      </Root>
     )
   }
 }
@@ -47,7 +49,7 @@ class BlogPostTemplate extends React.Component {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostBySlugTest($slug: String!) {
     site {
       siteMetadata {
         title
