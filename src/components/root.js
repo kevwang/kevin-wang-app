@@ -1,26 +1,36 @@
 import React from 'react'
 import Sidebar from '../components/sidebar'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+
+const headingStyles = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map((s) => {
+  {s: color: '#3c3b3b'}
+});
+
+const theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        body: {
+          fontSize: '1.00rem',
+          fontFamily: 'Tahoma',
+          color: '#424242'
+          // fontFamily: "Nunito"
+        },
+        ...headingStyles,
+      },
+    }
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
+      [theme.breakpoints.down('xs')]: {
+        display: 'block',
+      },
     },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
@@ -56,21 +66,22 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
       flexGrow: 1,
-      padding: theme.spacing(3),
+      // padding: theme.spacing(3),
     },
 }));
-
+  
 export default function Root(props) {
     const classes = useStyles();
-    const theme = useTheme();
     
     return (
-        <div className={classes.root}>
+        <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Sidebar />
-            <div className={classes.content}>
-                { props.children }
+            <div className={classes.root}>
+                <Sidebar />
+                <div className={classes.content}>
+                    { props.children }
+                </div>
             </div>
-        </div>
+        </ThemeProvider>
     )
 }

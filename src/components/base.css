@@ -2,7 +2,7 @@
   font-family: "Nunito";
   font-weight: 400;
   font-style: normal;
-  src: url('/fonts/nunito-sans-v6-latin-regular.woff2') format('woff2');
+  src:  url('/fonts/nunito-sans-v16-latin-regular.woff2') format('woff2');
   font-display: swap;
 }
 
@@ -11,8 +11,6 @@ body {
   font-size: 1em;
   line-height: 1.65;
   color: #373F49;
-  /*@apply bg-purple-100;*/
-  background: #eee;
   margin: 0;
 }
 
