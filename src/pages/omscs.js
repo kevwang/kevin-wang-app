@@ -33,8 +33,12 @@ export const pageQuery = graphql`
       title
       publishDate(formatString: "MMMM Do, YYYY")
       heroImage {
-        fluid(maxWidth: 1180, background: "rgb:000000") {
-          ...GatsbyContentfulFluid_tracedSVG
+        fluid(maxWidth: 1200) {
+          base64
+          aspectRatio
+          src
+          srcSet
+          sizes
         }
       }
       body {
@@ -52,7 +56,11 @@ export const pageQuery = graphql`
           tags
           heroImage {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
+              base64
+              aspectRatio
+              src
+              srcSet
+              sizes
             }
           }
           description {
