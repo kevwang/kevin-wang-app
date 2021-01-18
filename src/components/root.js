@@ -4,9 +4,10 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
+import Modal from './modal';
 
 const headingStyles = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map((s) => {
-  {s: color: '#3c3b3b'}
+  {s: {color: '#3c3b3b'}}
 });
 
 const theme = createMuiTheme({
@@ -15,9 +16,17 @@ const theme = createMuiTheme({
       '@global': {
         body: {
           fontSize: '1.00rem',
-          fontFamily: 'Tahoma',
-          color: '#424242'
-          // fontFamily: "Nunito"
+          fontFamily: "Segoe UI",
+          color: '#424242',
+          backgroundColor: '#f9f9f9',
+        },
+        a: {
+          textDecoration: 'none',
+          color: '#424242',
+          '&:hover': {
+            textDecoration: 'none',
+            color: '#424242',
+          },
         },
         ...headingStyles,
       },
@@ -72,16 +81,29 @@ const useStyles = makeStyles((theme) => ({
   
 export default function Root(props) {
     const classes = useStyles();
+    const [modalOpen, setModalOpen] = React.useState(false);
+    
+    const handleModalOpen = () => {
+      setModalOpen(true);
+    };
+
+    const handleModalClose = () => {
+      setModalOpen(false);
+    };
     
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <div className={classes.root}>
-                <Sidebar />
+                <Sidebar sidebarOpen={props.sidebarOpen} handleModalOpen={handleModalOpen}/>
                 <div className={classes.content}>
                     { props.children }
                 </div>
             </div>
+            <Modal modalOpen={modalOpen} 
+              handleModalOpen={handleModalOpen} 
+              handleModalClose={handleModalClose}
+            />
         </ThemeProvider>
     )
 }

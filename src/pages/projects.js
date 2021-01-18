@@ -14,7 +14,7 @@ export default function BlogPostTemplate(props) {
     
     return (
       <Root sidebarOpen={true}>
-        <Helmet title={`Home | ${siteTitle}`} />
+        <Helmet title={`Projects | ${siteTitle}`} />
         <HeroImage post={post}/>
         <PostContent post={post} />
         <Feed allPosts={allPosts}/>
@@ -23,13 +23,13 @@ export default function BlogPostTemplate(props) {
 }
 
 export const pageQuery = graphql`
-  query HomeQuery {
+  query ProjectsQuery {
     site {
       siteMetadata {
         title
       }
     }
-    contentfulBlogPost(slug: {eq: "home"} ) {
+    contentfulBlogPost(slug: {eq: "projects"} ) {
       title
       publishDate(formatString: "MMMM Do, YYYY")
       heroImage {

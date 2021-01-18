@@ -13,8 +13,8 @@ export default function BlogPostTemplate(props) {
     const post = get(props, 'data.contentfulBlogPost')
     
     return (
-      <Root sidebarOpen={true}>
-        <Helmet title={`Home | ${siteTitle}`} />
+      <Root sidebarOpen={false}>
+        <Helmet title={'OMSCS Course Review'} />
         <HeroImage post={post}/>
         <PostContent post={post} />
         <Feed allPosts={allPosts}/>
@@ -23,13 +23,13 @@ export default function BlogPostTemplate(props) {
 }
 
 export const pageQuery = graphql`
-  query HomeQuery {
+  query OmscsQuery {
     site {
       siteMetadata {
         title
       }
     }
-    contentfulBlogPost(slug: {eq: "home"} ) {
+    contentfulBlogPost(slug: {eq: "omscs"} ) {
       title
       publishDate(formatString: "MMMM Do, YYYY")
       heroImage {

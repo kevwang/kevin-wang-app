@@ -1,18 +1,24 @@
 @font-face {
-  font-family: "Nunito";
+  /* font-family: "Nunito";
   font-weight: 400;
   font-style: normal;
   src:  url('/fonts/nunito-sans-v16-latin-regular.woff2') format('woff2');
-  font-display: swap;
+  font-display: swap; */
+  /* font-family: "Segoe UI";
+  src:
+      url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff2) format("woff2"),
+      url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.woff) format("woff"),
+      url(//c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf) format("truetype");
+  font-weight: 400; */
 }
-
+/* 
 body {
   font-family: "Nunito", Tahoma, Arial, Helvetica, sans-serif;
   font-size: 1em;
   line-height: 1.65;
   color: #373F49;
   margin: 0;
-}
+} */
 
 img {
   display: block;
@@ -21,9 +27,13 @@ img {
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
   font-size: 2em;
   font-weight: normal;
+  margin: auto
 }
 
 a {
@@ -31,7 +41,6 @@ a {
 }
 
 .wrapper {
-  width: calc(100% - 10vmin);
   margin: 0 auto;
   padding: 5vmin 0;
 }
