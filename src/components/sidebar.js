@@ -146,6 +146,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 25,
     marginTop: 0,
     marginBottom: 0,
+    color: 'rgba(0, 0, 0, 0.80);',
+    textDecoration: 'none',
   },
   
   /**
@@ -225,7 +227,7 @@ export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
             <Avatar style={{width: '100%', height: 'auto'}} alt='Kevin Wang' src='/avatar.png' />
           </div>
           <p style={{ 
-            fontSize: '0.9em',
+            fontSize: '1em',
             width: drawerWidth - 20,
             margin: 'auto',
             textAlign: 'center',
@@ -256,10 +258,9 @@ export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
             <Tooltip title='Home' {...tooltipProps}>
               <ListItem button key={'Home'}>
                   <ListItemIcon className={classes.icon}><Home /></ListItemIcon>
-                <ListItemText
-                  primary={'Home'}
-                  className={classes.listText}
-                />
+                <p className={classes.listText}>
+                  Home
+                </p>
               </ListItem>
             </Tooltip>
           </Link>
@@ -267,9 +268,9 @@ export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
             <Tooltip title='OMSCS' {...tooltipProps}>
               <ListItem button key={'OMSCS Review'}>
                 <ListItemIcon className={classes.icon}><SchoolIcon /></ListItemIcon>
-                <ListItemText primary={'OMSCS Review'}
-                  className={classes.listText}
-                />
+                <p className={classes.listText}>
+                  OMSCS Review
+                </p>
               </ListItem>
             </Tooltip>
           </Link>
@@ -277,19 +278,20 @@ export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
             <Tooltip title='Projects' {...tooltipProps}>
               <ListItem button key={'Projects'}>
                 <ListItemIcon className={classes.icon}><CodeIcon /></ListItemIcon>
-                <ListItemText primary={'Projects'}
-                  className={classes.listText}
-                />
+                <p className={classes.listText}>
+                  Projects
+                </p>
               </ListItem>
             </Tooltip>
           </Link>
-          <a href='https://drive.google.com/file/d/1oUB7Y-G0-JACkb8bqrrWxkPLRqZV6a-_/view?usp=sharing' target="_blank">
+          <a style={{textDecoration: 'none'}} 
+            href='https://drive.google.com/file/d/1oUB7Y-G0-JACkb8bqrrWxkPLRqZV6a-_/view?usp=sharing' target="_blank">
             <Tooltip title='Resume' {...tooltipProps}>
               <ListItem button key={'Resume'}>
                 <ListItemIcon className={classes.icon}><DescriptionIcon /></ListItemIcon>
-                <ListItemText primary={'Resume'}
-                  className={classes.listText}
-                />
+                <p className={classes.listText}>
+                  Resume
+                </p>
               </ListItem>
             </Tooltip>
           </a>
@@ -299,9 +301,9 @@ export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
             <Tooltip title='Contact' {...tooltipProps}>
               <ListItem button key={'Contact'} onClick={handleModalOpen}>
                 <ListItemIcon className={classes.icon}><MailIcon /></ListItemIcon>
-                <ListItemText primary={'Contact'}
-                  className={classes.listText}
-                />
+                <p className={classes.listText}>
+                  Contact
+                </p>
               </ListItem>
             </Tooltip>
         </List>

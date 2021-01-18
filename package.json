@@ -24,7 +24,10 @@
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
+    "react-medium-image-zoom": "^4.3.1",
     "sharp": "^0.25.2",
+    "styled-components": "^5.2.1",
+    "styled-icons": "^10.25.0",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {

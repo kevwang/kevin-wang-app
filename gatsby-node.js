@@ -16,6 +16,7 @@ exports.createPages = ({ graphql, actions }) => {
                 node {
                   title
                   slug
+                  tags
                 }
               }
             }
@@ -29,13 +30,25 @@ exports.createPages = ({ graphql, actions }) => {
 
         const posts = result.data.allContentfulBlogPost.edges
         posts.forEach((post, index) => {
-          createPage({
-            path: `/${post.node.slug}/`,
-            component: blogPost,
-            context: {
-              slug: post.node.slug
-            },
-          })
+          if (Array.isArray(post.node.tags) && post.node.tags.includes('omscs')) {
+            createPage({
+              path: `/omscs/${post.node.slug}/`,
+              component: blogPost,
+              context: {
+                slug: post.node.slug
+              },
+            })
+          } else if (Array.isArray(post.node.tags) && post.node.tags.includes('not_feed')) {
+            // pass
+          } else {
+            createPage({
+              path: `/projects/${post.node.slug}/`,
+              component: blogPost,
+              context: {
+                slug: post.node.slug
+              },
+            })
+          }
         })
       })
     )

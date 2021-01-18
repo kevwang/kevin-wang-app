@@ -6,29 +6,17 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import Modal from './modal';
 
-const headingStyles = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].map((s) => {
-  {s: {color: '#3c3b3b'}}
-});
-
 const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
         body: {
-          fontSize: '1.00rem',
+          // fontSize: '1.00rem',
           fontFamily: "Segoe UI",
-          color: '#424242',
+          fontFamily: ['inter', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Helvetica',
+          "Apple Color Emoji", 'Arial', 'sans-serif', "Segoe UI Emoji", "Segoe UI Symbol"],
           backgroundColor: '#f9f9f9',
         },
-        a: {
-          textDecoration: 'none',
-          color: '#424242',
-          '&:hover': {
-            textDecoration: 'none',
-            color: '#424242',
-          },
-        },
-        ...headingStyles,
       },
     }
   },

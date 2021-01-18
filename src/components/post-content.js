@@ -4,16 +4,16 @@ import Container from '../components/container'
 export default function PostContent({post}) {
     return (
       <Container>
-          <div className="wrapper">
-          <h1 className="section-headline">{post.title}</h1>
-          <p style={{ display: 'block' }}>
-            {post.publishDate}
-          </p>
+        <div className="wrapper">
+          <div className="section-headline">
+            <h1>{post.title}</h1>
+          </div>
           <div
             dangerouslySetInnerHTML={{
               __html: post.body.childMarkdownRemark.html,
             }}
           />
+          <small>Last updated: {post.publishDate}</small>
         </div>
       </Container>
     )

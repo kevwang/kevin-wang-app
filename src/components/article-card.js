@@ -33,6 +33,22 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+    },
+  },
+
+  cardLeft: {
+    width: '100%',
+  },
+
+  cardRight: {
+    width: '100%',
+    paddingLeft: 40,
+    [theme.breakpoints.down('xs')]: {
+      paddingLeft: 0,
+      paddingTop: 10,
+    },
   }
 }));
 
@@ -42,17 +58,12 @@ export default function Article({ article }) {
 
   return (
     <div className={classes.articleContainer}>
-      <Link to={`/${article.slug}`}>
+      <Link to={`/${article.url}`}>
         <div className={classes.cardSection}>
-          <div style={{
-            width: '50%'
-          }}>
+          <div className={classes.cardLeft}>
             <Img style={{borderRadius: 10}} alt="" fluid={article.heroImage.fluid} />
           </div>
-          <div style={{
-            width: '50%',
-            paddingLeft: 40
-          }}>
+          <div className={classes.cardRight}>
             <h3 className={classes.previewTitle}>
               {article.title}
             </h3>

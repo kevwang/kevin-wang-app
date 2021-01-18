@@ -8,7 +8,7 @@ export default function CustomLink(props) {
   return (
     <Link {...props} style={{
       textDecoration: 'none',
-      color: '#424242',
+      color: 'rgba(0, 0, 0, 0.65);',
       // '&:hover': {
       //   color: "#FFFFFF",
       // },

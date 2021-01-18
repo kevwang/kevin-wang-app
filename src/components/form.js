@@ -40,22 +40,8 @@ export default function Form() {
     }}>
       <h2>Contact</h2>
       <p>
-        You can directly email me at kev (dot) wang2 (at) gmail, or message me on LinkedIn
+        Or you can directly email me at kev (dot) wang2 (at) gmail, or message me on LinkedIn
       </p>
-      {/* <form onSubmit={handleOnSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input id="email" type="email" name="email" required />
-        <label htmlFor="message">Message:</label>
-        <textarea id="message" name="message"></textarea>
-        <button type="submit" disabled={serverState.submitting}>
-          Submit
-        </button>
-        {serverState.status && (
-          <p className={!serverState.status.ok ? "errorMsg" : ""}>
-            {serverState.status.msg}
-          </p>
-        )}
-      </form> */}
       <form onSubmit={handleOnSubmit} style={{
         display: 'flex',
         flexDirection: 'column',
