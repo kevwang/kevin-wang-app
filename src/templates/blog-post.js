@@ -6,6 +6,7 @@ import HeroImage from '../components/hero-image'
 import Root from '../components/root'
 import Feed from '../components/feed'
 import PostContent from '../components/post-content'
+import TOC from '../components/toc'
 
 export default function BlogPostTemplate(props) {
     const post = get(props, 'data.contentfulBlogPost')
@@ -14,9 +15,18 @@ export default function BlogPostTemplate(props) {
     
     return (
       <Root>
-        <Helmet title={`${post.title} | ${siteTitle}`} />
+        <Helmet title={`${post.title}`} />
         <HeroImage post={post}/>
-        <PostContent post={post}/>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr auto 1fr',
+        }}>
+          <div></div>
+          <PostContent post={post} style={{
+            gridColumnStart: 2
+          }}/>
+          <TOC open={true}/>
+        </div>
         <Feed allPosts={allPosts}/>
       </Root>
     )

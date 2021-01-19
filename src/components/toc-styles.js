@@ -5,6 +5,7 @@ import { Close as Cross } from 'styled-icons/material'
 export const TocDiv = styled.aside`
   background: var(--color-background);
   padding: 0.7em 1.2em;
+  padding-left: 25px;
   margin: 1em 0;
   border-radius: 0.5em;
   box-shadow: 0 0 1em 3px var(--color-shadow);
@@ -18,8 +19,9 @@ export const TocDiv = styled.aside`
   grid-row: span 10;
   nav {
     max-height: 78vh;
-    overflow-y: scroll;
   }
+  position: sticky;
+  top: 10px;
 `
 export const Title = styled.h2`
   margin: 0;

@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { throttle } from 'lodash'
-// Import styled components (see the Styles section below).
 import { TocDiv, TocLink, TocIcon, Title, Toggle } from './toc-styles'
+import ReactResizeDetector from 'react-resize-detector';
+
 // Used to calculate each heading's offset from the top of the page.
 // This will be compared to window.scrollY to determine which heading
 // is currently active.
@@ -24,6 +25,7 @@ export default function Toc({ headingSelector, getTitle, getDepth, ...rest }) {
     nodes: [],
     minDepth: 0,
   })
+  const [isVisible, setVisible] = useState(true);
   // Controls whether ToC is expanded or closed on small screens.
   const [open, setOpen] = useState(false)
   // Controls which heading is currently highlighted as active.
@@ -42,8 +44,11 @@ export default function Toc({ headingSelector, getTitle, getDepth, ...rest }) {
     // a main element. You can pass in whatever string or array of strings
     // targets all the headings you want to appear in the ToC.
     const selector =
-      headingSelector || Array.from({ length: 6 }, (_, i) => `main h` + (i + 1))
-    const nodes = Array.from(document.querySelectorAll(selector))
+      // headingSelector || Array.from({ length: 6 }, (_, i) => `main h` + (i + 1))
+      ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+    // const nodes = Array.from(document.querySelectorAll(selector))
+    const nodes = Array.from(document.getElementsByClassName('post-content')[0]
+                    .querySelectorAll(selector))
     const titles = nodes.map(node => ({
       title: getTitle ? getTitle(node) : node.innerText,
       depth: getDepth ? getDepth(node) : Number(node.nodeName[1]),
@@ -63,42 +68,54 @@ export default function Toc({ headingSelector, getTitle, getDepth, ...rest }) {
       // lazily-loaded content increases offsets as user scrolls down.
       const offsets = nodes.map(el => accumulateOffsetTop(el))
       const activeIndex = offsets.findIndex(
-        offset => offset > window.scrollY + 0.8 * window.innerHeight
+        offset => offset > window.scrollY + 0.25 * window.innerHeight
       )
       setActive(activeIndex === -1 ? titles.length - 1 : activeIndex - 1)
     }, throttleTime)
     window.addEventListener(`scroll`, scrollHandler)
     return () => window.removeEventListener(`scroll`, scrollHandler)
   }, [headings])
+  const resizeTest = (width, height) => {
+    console.log(width)
+    if (width < 120) {
+      setVisible(false)
+    } else {
+      setVisible(true)
+    }
+  }
   return (
     <>
-      <Toggle opener open={open} onClick={() => setOpen(true)} size="1.6em" />
-      <TocDiv ref={ref} open={open}>
-        <Title>
-          <TocIcon />
-          {tocTitle || `Contents`}
-          <Toggle closer onClick={() => setOpen(false)} />
-        </Title>
-        <nav>
-          {headings.titles.map(({ title, depth }, index) => (
-            <TocLink
-              key={title}
-              active={active === index}
-              depth={depth - headings.minDepth}
-              onClick={event => {
-                event.preventDefault()
-                setOpen(false)
-                headings.nodes[index].scrollIntoView({
-                  behavior: `smooth`,
-                  block: `center`,
-                })
-              }}
-            >
-              {title}
-            </TocLink>
-          ))}
-        </nav>
-      </TocDiv>
+      {/* <Toggle opener open={open} onClick={() => setOpen(true)} size="1.6em" /> */}
+      <ReactResizeDetector handleWidth handleHeight onResize={resizeTest}>
+        <div style={{width:'100%'}}>
+        <TocDiv ref={ref} open={open} style={{display: isVisible ? 'block' : 'none'}}>
+          {/* <Title>
+            <TocIcon />
+            {tocTitle || `Contents`}
+            <Toggle closer onClick={() => setOpen(false)} />
+          </Title> */}
+          <nav>
+            {headings.titles.map(({ title, depth }, index) => (
+              <TocLink
+                key={title}
+                active={active === index}
+                depth={depth - headings.minDepth}
+                onClick={event => {
+                  event.preventDefault()
+                  setOpen(false)
+                  headings.nodes[index].scrollIntoView({
+                    behavior: `smooth`,
+                    block: `start`,
+                  })
+                }}
+              >
+                {title}
+              </TocLink>
+            ))}
+          </nav>
+        </TocDiv>
+        </div>
+      </ReactResizeDetector>
     </>
   )
 }

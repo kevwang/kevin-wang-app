@@ -1,5 +1,6 @@
 import React from 'react'
 import Container from '../components/container'
+import TOC from '../components/toc'
 
 export default function PostContent({post}) {
     return (
@@ -8,7 +9,7 @@ export default function PostContent({post}) {
           <div className="section-headline">
             <h1>{post.title}</h1>
           </div>
-          <div
+          <div className='post-content'
             dangerouslySetInnerHTML={{
               __html: post.body.childMarkdownRemark.html,
             }}
