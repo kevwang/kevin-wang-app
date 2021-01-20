@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { throttle } from 'lodash'
 import { TocDiv, TocLink, TocIcon, Title, Toggle } from './toc-styles'
-import ReactResizeDetector from 'react-resize-detector';
+import ReactResizeDetector from 'react-resize-detector'
 
 // Used to calculate each heading's offset from the top of the page.
 // This will be compared to window.scrollY to determine which heading
 // is currently active.
+// Credits to https://janosh.dev/blog/sticky-active-smooth-responsive-toc
 const accumulateOffsetTop = (el, totalOffset = 0) => {
   while (el) {
     totalOffset += el.offsetTop - el.scrollTop + el.clientTop
@@ -13,7 +14,7 @@ const accumulateOffsetTop = (el, totalOffset = 0) => {
   }
   return totalOffset
 }
-export default function Toc({ headingSelector, getTitle, getDepth, ...rest }) {
+export default function Toc({ leftSideWidth, isVisible, headingSelector, getTitle, getDepth, ...rest }) {
   const { throttleTime = 200, tocTitle = `Contents` } = rest
   // headingSelector: string or array of strings
   // getTitle: function
@@ -25,7 +26,6 @@ export default function Toc({ headingSelector, getTitle, getDepth, ...rest }) {
     nodes: [],
     minDepth: 0,
   })
-  const [isVisible, setVisible] = useState(true);
   // Controls whether ToC is expanded or closed on small screens.
   const [open, setOpen] = useState(false)
   // Controls which heading is currently highlighted as active.
@@ -45,7 +45,7 @@ export default function Toc({ headingSelector, getTitle, getDepth, ...rest }) {
     // targets all the headings you want to appear in the ToC.
     const selector =
       // headingSelector || Array.from({ length: 6 }, (_, i) => `main h` + (i + 1))
-      ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+      ['h2']
     // const nodes = Array.from(document.querySelectorAll(selector))
     const nodes = Array.from(document.getElementsByClassName('post-content')[0]
                     .querySelectorAll(selector))
@@ -53,7 +53,6 @@ export default function Toc({ headingSelector, getTitle, getDepth, ...rest }) {
       title: getTitle ? getTitle(node) : node.innerText,
       depth: getDepth ? getDepth(node) : Number(node.nodeName[1]),
     }))
-    console.log(nodes)
     // Compute the minimum heading depth. Will be subtracted from each heading's
     // depth to determine the indentation of that heading in the ToC.
     const minDepth = Math.min(...titles.map(h => h.depth))
@@ -75,25 +74,11 @@ export default function Toc({ headingSelector, getTitle, getDepth, ...rest }) {
     window.addEventListener(`scroll`, scrollHandler)
     return () => window.removeEventListener(`scroll`, scrollHandler)
   }, [headings])
-  const resizeTest = (width, height) => {
-    console.log(width)
-    if (width < 120) {
-      setVisible(false)
-    } else {
-      setVisible(true)
-    }
-  }
   return (
     <>
       {/* <Toggle opener open={open} onClick={() => setOpen(true)} size="1.6em" /> */}
-      <ReactResizeDetector handleWidth handleHeight onResize={resizeTest}>
-        <div style={{width:'100%'}}>
+      <div style={leftSideWidth}>
         <TocDiv ref={ref} open={open} style={{display: isVisible ? 'block' : 'none'}}>
-          {/* <Title>
-            <TocIcon />
-            {tocTitle || `Contents`}
-            <Toggle closer onClick={() => setOpen(false)} />
-          </Title> */}
           <nav>
             {headings.titles.map(({ title, depth }, index) => (
               <TocLink
@@ -114,8 +99,7 @@ export default function Toc({ headingSelector, getTitle, getDepth, ...rest }) {
             ))}
           </nav>
         </TocDiv>
-        </div>
-      </ReactResizeDetector>
+      </div>
     </>
   )
 }

@@ -7,25 +7,42 @@ import Root from '../components/root'
 import Feed from '../components/feed'
 import PostContent from '../components/post-content'
 import TOC from '../components/toc'
+import ReactResizeDetector from 'react-resize-detector'
 
 export default function BlogPostTemplate(props) {
     const post = get(props, 'data.contentfulBlogPost')
     const allPosts = get(props, 'data.allContentfulBlogPost.edges')
     const siteTitle = get(props, 'data.site.siteMetadata.title')
     
+    // These are for ensuring the ToC resizes, and disappears when the screen is too small
+    const [width, setWidth] = React.useState('100%')
+    const rightDivStyle = {
+      width: width
+    }
+    const handleResize = (width) => {
+      setWidth(width)
+    }
+
     return (
       <Root>
         <Helmet title={`${post.title}`} />
         <HeroImage post={post}/>
+
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr auto 1fr',
         }}>
-          <div></div>
+          <ReactResizeDetector 
+            refreshRate={100} 
+            refreshOptions={{leading: false, trailing: true}} 
+            refreshMode='debounce' 
+            onResize={handleResize}>
+            <div></div>
+          </ReactResizeDetector>
           <PostContent post={post} style={{
             gridColumnStart: 2
           }}/>
-          <TOC open={true}/>
+          <TOC leftSideWidth={rightDivStyle} isVisible={width > 150}/>
         </div>
         <Feed allPosts={allPosts}/>
       </Root>

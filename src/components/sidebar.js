@@ -161,7 +161,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
-  const [open, setOpen] = React.useState(sidebarOpen === true);
+  const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const classes = useStyles();
 
@@ -235,7 +235,7 @@ export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
             marginBottom: 0,
             marginTop: 10
           }}>
-            Welcome to my shared space of projects related to engineering, startups, and other interests.
+            Welcome to my shared space of projects in engineering, startups, and personal interests.
           </p>
           <div style={{ // Wrapper for Github and Linkedin icons
             display: 'flex',

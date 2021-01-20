@@ -17,6 +17,12 @@ const theme = createMuiTheme({
           "Apple Color Emoji", 'Arial', 'sans-serif', "Segoe UI Emoji", "Segoe UI Symbol"],
           backgroundColor: '#f9f9f9',
         },
+        strong: {
+          fontWeight: 600,
+        },
+        b: {
+          fontWeight: 600,
+        }
       },
     }
   },
@@ -63,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
       flexGrow: 1,
-      // padding: theme.spacing(3),
     },
 }));
   

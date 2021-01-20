@@ -4,22 +4,19 @@ import { Close as Cross } from 'styled-icons/material'
 // import { mediaQueries } from 'utils/mediaQueries'
 export const TocDiv = styled.aside`
   background: var(--color-background);
-  padding: 0.7em 1.2em;
+  padding-top: 10px;
   padding-left: 25px;
+  padding-right: 5px;
   margin: 1em 0;
   border-radius: 0.5em;
   box-shadow: 0 0 1em 3px var(--color-shadow);
   height: max-content;
-  max-height: 80vh;
   z-index: 3;
   line-height: 2.2em;
   right: 1em;
   max-width: 20em;
   overscroll-behavior: none;
   grid-row: span 10;
-  nav {
-    max-height: 78vh;
-  }
   position: sticky;
   top: 10px;
 `
@@ -38,6 +35,9 @@ export const TocLink = styled.a`
   font-weight: ${props => props.active && `bold`};
   display: block;
   margin-left: ${props => props.depth + `em`};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 export const TocIcon = styled(BookContent)`
   width: 1em;
