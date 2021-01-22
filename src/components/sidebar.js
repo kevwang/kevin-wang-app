@@ -161,7 +161,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(sidebarOpen);
   const theme = useTheme();
   const classes = useStyles();
 
@@ -224,7 +224,7 @@ export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
         })}>
           <h3 style={{ textAlign: 'center' }}>Kevin Wang</h3>
           <div style={{margin: '0 auto', width: '60%'}}>
-            <Avatar style={{width: '100%', height: 'auto'}} alt='Kevin Wang' src='/avatar.png' />
+            <Avatar style={{width: '100%', height: 'auto', maxWidth: 200}} alt='Kevin Wang' src='/avatar.png' />
           </div>
           <p style={{ 
             fontSize: '1em',
