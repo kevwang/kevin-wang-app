@@ -285,7 +285,7 @@ export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
             </Tooltip>
           </Link>
           <a style={{textDecoration: 'none'}} 
-            href='https://drive.google.com/file/d/1oUB7Y-G0-JACkb8bqrrWxkPLRqZV6a-_/view?usp=sharing' target="_blank">
+            href='https://drive.google.com/file/d/19zi3M4dumtT3d6bm-bQH8Zi5Y9UJymZ8/view?usp=sharing' target="_blank">
             <Tooltip title='Resume' {...tooltipProps}>
               <ListItem button key={'Resume'}>
                 <ListItemIcon className={classes.icon}><DescriptionIcon /></ListItemIcon>
