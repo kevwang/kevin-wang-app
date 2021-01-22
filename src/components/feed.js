@@ -11,7 +11,7 @@ export default function Feed({ allPosts }) {
             coursePosts.push(p)
         }
     }
-    let shuffled = coursePosts.sort(() => 0.5 - Math.random())//.slice(0, 2);
+    let shuffled = coursePosts.sort(() => 0.5 - Math.random()).slice(0, 2);
     let postsToShow = []
     for (let p of allPosts) {
         // If no tag, it's a project
