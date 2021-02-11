@@ -141,7 +141,7 @@ p, ul, li {
 /* This is for captions which are only generated from the markdown */
 .image-caption {
   margin-top: -11px;
-  opacity: 66%;
+  opacity: 0.7;
   text-align: center;
 }
 
