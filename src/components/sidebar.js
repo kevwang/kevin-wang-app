@@ -11,13 +11,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Home from '@material-ui/icons/Home'; // Home / About
 import SchoolIcon from '@material-ui/icons/School'; // OMSCS
 import CodeIcon from '@material-ui/icons/Code'; // Projects
-import DescriptionIcon from '@material-ui/icons/Description'; // Resume
-import MailIcon from '@material-ui/icons/Mail'; // Contact
 import GitHubIcon from '@material-ui/icons/GitHub'; // Github
 import LinkedInIcon from '@material-ui/icons/LinkedIn'; // LinkedIn
 import Tooltip from '@material-ui/core/Tooltip';
@@ -61,8 +58,6 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     backgroundColor: '#FFF',
-    // boxShadow: '0px 0px 12px #cccccc',
-    // zIndex: -1,
     overflow: 'hidden',
     width: drawerWidth,
     flexShrink: 0,
@@ -101,9 +96,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   profileOpen: {
-    // height: 'auto',
     maxHeight: 500,
-    // display: 'flex',
     transition: theme.transitions.create('max-height', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -111,13 +104,10 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   profileClose: {
-    // height: 0,
     maxHeight: 0,
-    // display: 'none'
     transition: theme.transitions.create('max-height', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
-      //delay: 1000,
     }),
     [theme.breakpoints.down('xs')]: {
       display: 'none',

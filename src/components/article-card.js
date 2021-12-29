@@ -2,7 +2,6 @@ import React from 'react'
 import Link from './custom-link';
 import Img from 'gatsby-image'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-// import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple.js/TouchRipple';
 
 const useStyles = makeStyles((theme) => ({
   previewTitle: {
