@@ -284,17 +284,6 @@ export default function MiniDrawer({sidebarOpen, handleModalOpen}) {
               </ListItem>
             </Tooltip>
           </Link>
-          <a style={{textDecoration: 'none'}} 
-            href='https://drive.google.com/file/d/19zi3M4dumtT3d6bm-bQH8Zi5Y9UJymZ8/view?usp=sharing' target="_blank">
-            <Tooltip title='Resume' {...tooltipProps}>
-              <ListItem button key={'Resume'}>
-                <ListItemIcon className={classes.icon}><DescriptionIcon /></ListItemIcon>
-                <p className={classes.listText}>
-                  Resume
-                </p>
-              </ListItem>
-            </Tooltip>
-          </a>
         </List>
         <Divider className={clsx({ [classes.hideOnXS]: !open})} />
         <List className={clsx({ [classes.hideOnXS]: !open})}>
