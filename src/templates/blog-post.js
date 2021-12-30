@@ -9,6 +9,8 @@ import PostContent from '../components/post-content'
 import TOC from '../components/toc'
 import ReactResizeDetector from 'react-resize-detector'
 
+require(`katex/dist/katex.min.css`)
+
 export default function BlogPostTemplate(props) {
     const post = get(props, 'data.contentfulBlogPost')
     const allPosts = get(props, 'data.allContentfulBlogPost.edges')

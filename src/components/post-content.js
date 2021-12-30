@@ -2,6 +2,8 @@ import React from 'react'
 import Container from '../components/container'
 import TOC from '../components/toc'
 
+require(`katex/dist/katex.min.css`)
+
 export default function PostContent({post, children}) {
     return (
       <Container>

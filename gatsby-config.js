@@ -59,7 +59,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-katex`,
             options: {
-              output: 'mathml'
+              output: 'mathml',
             }
           },
           'gatsby-remark-external-links',

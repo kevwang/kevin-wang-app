@@ -16,6 +16,7 @@ import Home from '@material-ui/icons/Home'; // Home / About
 import SchoolIcon from '@material-ui/icons/School'; // OMSCS
 import CodeIcon from '@material-ui/icons/Code'; // Projects
 import GitHubIcon from '@material-ui/icons/GitHub'; // Github
+import MailIcon from '@material-ui/icons/Mail'; // Contact
 import LinkedInIcon from '@material-ui/icons/LinkedIn'; // LinkedIn
 import Tooltip from '@material-ui/core/Tooltip';
 
